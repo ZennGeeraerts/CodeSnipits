@@ -1,4 +1,4 @@
-void DirectX11RendererAPI::Initialize()
+	void DirectX11RendererAPI::Initialize()
 	{
 		m_pDirectX11Context = static_cast<DirectX11Context*>(SmileGame::GetInstance().GetWindow().GetRenderingContext());
 		SM_ASSERT(m_pDirectX11Context, "DirectX11RendererAPI > RenderingContext is not a DirectX11Context");
