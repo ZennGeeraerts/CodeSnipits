@@ -2,7 +2,6 @@
 	void DirectX11RendererAPI::Initialize()
 	{
 		m_pDirectX11Context = static_cast<DirectX11Context*>(SmileGame::GetInstance().GetWindow().GetRenderingContext());
-		SM_ASSERT(m_pDirectX11Context, "DirectX11RendererAPI > RenderingContext is not a DirectX11Context");
 	}
 
 	void DirectX11RendererAPI::ResizeWindow(uint32_t x, uint32_t y, uint32_t width, uint32_t height)
@@ -92,7 +91,6 @@
 	void DirectX11RendererAPI::DrawIndexed(int32_t indexCount, const Ref<Shader>& pShader)
 	{
 		auto pDirectX11Shader = static_cast<DirectX11Shader*>(pShader.get());
-		SM_ASSERT(pDirectX11Shader, "DirectX11RendererAPI::DrawIndexed > Shader is not a DirectX11Shader");
 
 		m_pDirectX11Context->m_pDeviceContext->IASetPrimitiveTopology(D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST);
 
