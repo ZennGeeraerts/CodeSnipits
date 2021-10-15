@@ -14,9 +14,9 @@ void Elite::Renderer::VertexTransformFunction(const std::vector<Mesh::Vertex_Inp
 		// Calculate the viewDirection of the vertex from the camera to the vertex
 		const Elite::FVector3 viewDirection{ Elite::GetNormalized(originalVertices[i].Position - m_pCamera->GetOrigin()) };;
 		transformedVertices.push_back(
-    Mesh::Vertex_Output{ transformedVertex, originalVertices[i].Color, Elite::FVector3{ worldTransform * Elite::FVector4{ originalVertices[i].Normal } },
-			 Elite::FVector3{ worldTransform * Elite::FVector4{ originalVertices[i].Tangent } }, originalVertices[i].UV, viewDirection }
-       );
+    			Mesh::Vertex_Output{ transformedVertex, originalVertices[i].Color, Elite::FVector3{ worldTransform * Elite::FVector4{ originalVertices[i].Normal } },
+			Elite::FVector3{ worldTransform * Elite::FVector4{ originalVertices[i].Tangent } }, originalVertices[i].UV, viewDirection }
+      		);
 	}
 }
 
