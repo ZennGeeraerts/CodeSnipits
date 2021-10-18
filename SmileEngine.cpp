@@ -292,3 +292,44 @@
 	{
 		m_pDirectX11Context->GetDeviceContext()->IASetVertexBuffers(0, 0, nullptr, nullptr, nullptr);
 	}
+
+
+// Components
+	struct TagComponent
+	{
+		TagComponent() = default;
+		TagComponent(const TagComponent&) = default;
+		TagComponent(const std::string& tag)
+			: Tag{ tag }
+		{}
+
+		std::string Tag;
+	};
+
+	struct StaticMeshComponent final
+	{
+		StaticMeshComponent()
+		{
+			pMaterials.push_back(CreateRef<Material>());
+		}
+
+		StaticMeshComponent(const StaticMeshComponent&) = default;
+
+		// For now, only support 1 material
+		StaticMeshComponent(const std::string& assetFile, const Ref<Material>& pMaterial)
+		{
+			pMaterials.push_back(pMaterial);
+
+			MeshLoader meshLoader{};
+			pMeshes = meshLoader.LoadMesh(assetFile);
+
+			for (const auto& pMesh : pMeshes)
+			{
+				const auto& bufferLayout = pMaterials[0]->GetBufferLayout();
+				pMesh->Create(bufferLayout);
+			}
+		}
+
+		std::vector<Ref<Mesh>> pMeshes = {};
+		std::vector<Ref<Material>> pMaterials = {};
+	};
